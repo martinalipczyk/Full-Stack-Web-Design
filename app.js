@@ -8,11 +8,8 @@ const port = 3000;
 app.use(express.static(__dirname + "/public"));
 
 const get_all_videos = `
-        SELECT video_id, todo_description, todo.subject_id as subject_id, subject_name, DATE_FORMAT(date, "%m-%d-%Y") as date
-        FROM todo_item todo
-        JOIN subject
-        ON todo.subject_id = subject.subject_id
-
+        SELECT video_id, name, date, duration, image
+        FROM video
 `;
 
 app.set("views", __dirname + "/views");
@@ -28,33 +25,31 @@ app.get("/", (req, res) => {
             res.status(500).send(error); // Internal Server Error
         } else {
             // res.send(results);
-            res.render('index', { name: "Martina", hwlist: results })
+            res.render('index', { feed: results })
         }
     });
 });
 
-const get_todo_details = `
-    SELECT todo_id, todo_description, todo.subject_id as subject_id, subject_name, DATE_FORMAT(date, "%Y-%m-%d") as date, notes
-    FROM todo_item todo
-    JOIN subject
-        ON todo.subject_id = subject.subject_id
-    WHERE todo_id = ?
+const get_video_details = `
+    SELECT video_id, name, date, duration, image
+    FROM video
+    WHERE video_id = ?
 `;
 
-app.get("/todo/:id", (req, res) => {
-    db.execute(get_todo_details, [req.params.id], (error, results) => {
+app.get("/video/:id", (req, res) => {
+    db.execute(get_video_details, [req.params.id], (error, results) => {
         if (error) {
             res.status(500).send(error); // Internal Server Error
         } else {
             // res.send(results);
-            res.render('todo', {hw: results[0] })
+            res.render('video', {vid: results[0] })
         }
     });
 });
 
-
-const create_todo = `
-    INSERT INTO todo_item (todo_description, subject_id, date, notes)
+//////////////stopped here
+const upload_video = `
+    INSERT INTO video (todo_description, subject_id, date, notes)
     VALUES(?, ?, ?, ?)
 `;
 
