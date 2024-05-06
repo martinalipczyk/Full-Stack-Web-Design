@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HW Tracker</title>
+        <!-- Compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class="container">
+            <h3>Welcome <%= name %></h3>
+            <h1 class="center">BCA Homework Tracker</h1>
+            <button class="btn center deep-purple lighten-3 modal-trigger" href="#openform">new todo</button>
+            <div class="section" id="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>date</th>
+                            <th>subject</th>
+                            <th>todo</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>   
+                        <% for (let i = 0; i < hwlist.length; i++) { %>
+                        <tr>
+                            <td><%= hwlist[i].date %></td>
+                            <td><%= hwlist[i].subject_name %></td>
+                            <td><%= hwlist[i].todo_description %></td>
+                            <td>a
+                                <a class="btn" href="/todo/<%= hwlist[i].todo_id %>">
+                                    <i class="material-icons ">edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn" href = "/todo/<%= hwlist[i].todo_id %>/delete">
+                                    <i class="material-icons ">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                            
+    
+    
+                    </tbody>
+                </table>
+                
+            </div>
+        
+
+            <div class="modal" id="openform">
+                <div class="modal-content">
+                    <h1>new todo</h1>
+                    <form action="/" method = "POST">
+                        <label for="subject">subject: </label>
+                        <select id="subject" name="subject">
+                            <option value="1">Math</option>
+                            <option value="2">Computer Science</option>
+                            <option value="3">English</option>
+                            <option value="4">History</option>
+                            <option value="5">World Language</option>
+                            <option value="6">Biology</option>
+                            <option value="7">Chemistry</option>
+                            <option value="8">Physics</option>
+                        </select>
+                        <label for="date">date: :</label>
+                        <input type="date" id="date" name="date">
+                        <label for="todo">todo: </label>
+                        <input type="text" id="todo" name="todo">
+                        <label for="notes">Notes</label>
+                        <br>
+                        <textarea name="notes" id="notes" cols="30" rows="20"></textarea>
+                        <div class="right">
+                            <input type="submit" value="cancel" class="btn modal-close grey lighten-2 ">
+                            <input type="submit" value="submit" class="btn deep-purple lighten-3 ">
+                        </div>
+                        
+                    </form>
+                </div>
+
+            </div>
+        
+        <!-- Compiled and minified JavaScript -->
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
+    <script>M.AutoInit();</script>
+    </body>
+</html>

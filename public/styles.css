@@ -1,0 +1,67 @@
+* {
+    color: #8e7fef;
+}
+
+td {
+    color: black;
+}
+
+.btn {
+    border-radius: 50px;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 5px 5px 7px #ddd, -5px -5px 7px #eee;
+}
+
+td {
+    min-width: 20px;
+}
+
+.container {
+    positon: relative;
+}
+
+.container > button {
+    position: sticky;
+    left: 50%;
+}
+
+input.btn {
+    margin: 20px 5px;
+}
+
+.modal {
+    border-radius: 30px;
+    padding: 20px;
+}
+
+textarea {
+    border-radius: 10px;
+}
+
+.edit-form {
+    padding: 30px;
+    width: 500px;
+}
+
+.edit-form > label {
+    color: #8e7fef;
+    font-size: 20px;
+}
+
+.edit-form > input {
+    display: inline;
+    width: 50%;
+}
+
+.edit-form > input[type="text"] {
+    font-size: 25px;
+}
+
+.edit-form > select {
+    font-size: 50px;
+}
+
+.edit-form > .btn {
+    width: max-content;
+}

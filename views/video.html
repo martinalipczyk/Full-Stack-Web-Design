@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HW Tracker</title>
+        <!-- Compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+        <link rel="stylesheet" href="/styles.css" />
+    </head>
+    <body>
+        <form action="/todo/<%=hw.todo_id%>" method = "post" class="edit-form">
+            <label for="todo">TODO:</label>
+            <input
+                type="text"
+                id="todo"
+                name="todo"
+                value="<%= hw.todo_description %>"
+            />
+            <br /><br />
+            <label for="date">Date: </label>
+            <input type="date" id="date" name="date" value="<%=hw.date%>"/>
+            <br /><br />
+            <label for="subject">Subject: </label>
+            <select id="subject" name="subject">
+                <option value="1" <% if(hw.subject_id==1) { %> selected <%}%>>Math</option>
+                <option value="2" <% if(hw.subject_id==2) { %> selected <%}%>>Computer Science</option>
+                <option value="3" <% if(hw.subject_id==3) { %> selected <%}%>>English</option>
+                <option value="4" <% if(hw.subject_id==4) { %> selected <%}%>>History</option>
+                <option value="5" <% if(hw.subject_id==5) { %> selected <%}%>>World Language</option>
+                <option value="6" <% if(hw.subject_id==6) { %> selected <%}%>>Biology</option>
+                <option value="7" <% if(hw.subject_id==7) { %> selected <%}%>>Chemistry</option>
+                <option value="8" <% if(hw.subject_id==8) { %> selected <%}%>>Physics</option>
+            </select>
+            <br />
+            <label for="notes">Notes:</label>
+            <br />
+            <textarea name="notes" id="notes" cols="30" rows="50"><%= hw.notes %></textarea>
+            <a class="btn grey lighten-2" href="/">Cancel</a>
+            <input
+                type="submit"
+                value="submit"
+                class="btn deep-purple lighten-3"
+            />
+        </form>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            M.AutoInit();
+        </script>
+    </body>
+</html>
