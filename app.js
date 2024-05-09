@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: false}));
 
 app.get("/", (req, res) => {
-    db.execute(get_all_todo_items, (error, results) => {
+    db.execute(get_all_videos, (error, results) => {
         if (error) {
             res.status(500).send(error); // Internal Server Error
         } else {
@@ -47,14 +47,13 @@ app.get("/video/:id", (req, res) => {
     });
 });
 
-//////////////stopped here
 const upload_video = `
-    INSERT INTO video (todo_description, subject_id, date, notes)
+    INSERT INTO video (name, date, duration, image)
     VALUES(?, ?, ?, ?)
 `;
 
 app.post("/", (req, res)=>{
-    db.execute(create_todo, [req.body.todo, req.body.subject, req.body.date, req.body.notes], (error, results)=> {
+    db.execute(upload_video, [req.body.name, req.body.date, req.body.duration, req.body.image], (error, results)=> {
         if(error){
             res.status(500).send(error);
         }
@@ -64,13 +63,13 @@ app.post("/", (req, res)=>{
     });
 });
 
-const delete_todo = `
-    DELETE FROM todo_item
-    WHERE todo_id = ?    
+const delete_video = `
+    DELETE FROM video
+    WHERE video_id = ?    
 `
 
-app.get("/todo/:id/delete", (req, res) => {
-    db.execute(delete_todo, [req.params.id], (error, results) =>{
+app.get("/video/:id/delete", (req, res) => {
+    db.execute(delete_video, [req.params.id], (error, results) =>{
         if(error){
             res.status(500).send(error);
         }
@@ -81,18 +80,18 @@ app.get("/todo/:id/delete", (req, res) => {
 });
 
 
-const update_todo = `
-    UPDATE todo_item
-    SET todo_description = ?,
-        subject_id = ?,
+const update_video = `
+    UPDATE video 
+    SET name = ?,
         date = ?,
-        notes = ?
+        duration = ?,
+        image = ?
     WHERE
-        todo_id = ?
+        video_id = ?
 `
 
-app.post("/todo/:id", (req,res) => {
-    db.execute(update_todo, [req.body.todo, req.body.subject, req.body.date, req.body.notes, req.params.id], (error, results) =>{
+app.post("/video/:id", (req,res) => {
+    db.execute(update_video, [req.body.name, req.body.date, req.body.date, req.body.duration, req.params.image, req.params.id], (error, results) =>{
         if(error){
             res.status(500).send(error);
         }else{

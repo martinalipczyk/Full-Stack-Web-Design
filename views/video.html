@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="/styles.css" />
     </head>
     <body>
-        <form action="/todo/<%=hw.todo_id%>" method = "post" class="edit-form">
+        <form action="/video/<%=vid.todo_id%>" method = "post" class="edit-video">
             <label for="todo">TODO:</label>
             <input
                 type="text"
@@ -29,16 +29,7 @@
             <input type="date" id="date" name="date" value="<%=hw.date%>"/>
             <br /><br />
             <label for="subject">Subject: </label>
-            <select id="subject" name="subject">
-                <option value="1" <% if(hw.subject_id==1) { %> selected <%}%>>Math</option>
-                <option value="2" <% if(hw.subject_id==2) { %> selected <%}%>>Computer Science</option>
-                <option value="3" <% if(hw.subject_id==3) { %> selected <%}%>>English</option>
-                <option value="4" <% if(hw.subject_id==4) { %> selected <%}%>>History</option>
-                <option value="5" <% if(hw.subject_id==5) { %> selected <%}%>>World Language</option>
-                <option value="6" <% if(hw.subject_id==6) { %> selected <%}%>>Biology</option>
-                <option value="7" <% if(hw.subject_id==7) { %> selected <%}%>>Chemistry</option>
-                <option value="8" <% if(hw.subject_id==8) { %> selected <%}%>>Physics</option>
-            </select>
+            
             <br />
             <label for="notes">Notes:</label>
             <br />

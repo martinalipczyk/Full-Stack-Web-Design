@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>metube</title>
+        <!-- Compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!-- <link rel="stylesheet" href="styles.css"> -->
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class="container">
+            <div> 
+                <h2 class=" left">metube</h2>
+                <a class= "material-icons large left">videocam</a>
+                <button class="btn center deep-purple lighten-3 modal-trigger right" href="#openform">upload video</button>
+            </div>
+
+            <div></div>
+            <div class="section" id="list">
+
+            <h3>My Channel</h3>
+                <table>
+                    <!-- <thead>
+                        <tr>
+                            <th>date</th>
+                            <th>subject</th>
+                            <th>todo</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead> -->
+                    <tbody>   
+                        <% for (let i = 0; i < feed.length; i++) { %>
+                        <tr>
+                            <td><%= feed[i].image %></td>
+                            <td><%= feed[i].name %></td>
+                            <td><%= feed[i].date %></td>
+                            <td><%= feed[i].duration %></td>
+                            <td>a
+                                <a class="btn" href="/video/<%= feed[i].video_id %>">
+                                    <i class="material-icons ">edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn" href = "/video/<%= feed[i].video_id %>/delete">
+                                    <i class="material-icons ">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                            
+    
+    
+                    </tbody>
+                </table>
+                
+            </div>
+        
+
+            <div class="modal" id="openform">
+                <div class="modal-content">
+                    <h1>upload video</h1>
+                    <form action="/" method = "POST">
+                        <label for="title">title: </label>
+                        <input type="text" id="title" name="title">
+                        <div id="drop-zone"> 
+                            <label for = "thumbnail">upload thumbnail: </label>
+                            <input type="file" id="thumbnail" multiple> 
+                          </div> 
+                        <div class="center">
+                            <input type="submit" value="upload video" class="btn deep-purple lighten-3 ">
+                        </div>
+                        <p>
+
+                        </p>
+                        
+                    </form>
+                </div>
+
+            </div>
+        
+        <!-- Compiled and minified JavaScript -->
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
+    <script>M.AutoInit();</script>
+    </body>
+</html>
