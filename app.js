@@ -48,12 +48,13 @@ app.get("/video/:id", (req, res) => {
 });
 
 const upload_video = `
-    INSERT INTO video (name, date, duration, image)
+    INSERT INTO video (name, duration, image, date)
     VALUES(?, ?, ?, ?)
 `;
 
 app.post("/", (req, res)=>{
-    db.execute(upload_video, [req.body.name, req.body.date, req.body.duration, req.body.image], (error, results)=> {
+    console.log(req.body.image)
+    db.execute(upload_video, [req.body.name, parseInt(Math.random()*60, 10), req.body.image, req.body.date], (error, results)=> {
         if(error){
             res.status(500).send(error);
         }
@@ -83,15 +84,12 @@ app.get("/video/:id/delete", (req, res) => {
 const update_video = `
     UPDATE video 
     SET name = ?,
-        date = ?,
-        duration = ?,
-        image = ?
     WHERE
         video_id = ?
 `
 
 app.post("/video/:id", (req,res) => {
-    db.execute(update_video, [req.body.name, req.body.date, req.body.date, req.body.duration, req.body.image, req.params.id], (error, results) =>{
+    db.execute(update_video, [req.body.name, req.params.id], (error, results) =>{
         if(error){
             res.status(500).send(error);
         }else{

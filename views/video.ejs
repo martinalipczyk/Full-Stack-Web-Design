@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>HW Tracker</title>
+        <title>metube</title>
         <!-- Compiled and minified CSS -->
         <link
             rel="stylesheet"
@@ -17,24 +17,16 @@
     </head>
     <body>
         <form action="/video/<%=vid.video_id%>" method = "post" class="edit-video">
-            <label for="video">TODO:</label>
+            <label for="video">Name:</label>
             <input
                 type="text"
                 id="name"
                 name="name"
                 value="<%= vid.name %>"
             />
-            <br /><br />
-            <label for="date">Date: </label>
-            <input type="date" id="date" name="date" value="<%=vid.date%>"/>
-            <br /><br />
-            <label for="subject">Subject: </label>
             
-            <br />
-            <label for="notes">Notes:</label>
-            <br />
-            <textarea name="notes" id="notes" cols="30" rows="50"><%= hw.notes %></textarea>
-            <a class="btn grey lighten-2" href="/">Cancel</a>
+            
+
             <input
                 type="submit"
                 value="submit"

@@ -16,28 +16,32 @@
     <body>
         <div class="container">
             <div> 
-                <h2 class=" left">metube</h2>
-                <a class= "material-icons large left">videocam</a>
-                <button class="btn center modal-trigger right" href="#openform">upload video</button>
+                <div>
+                    <h1 class= "material-icons large">videocam</h1>
+                    <h1 class=" hleft">metube</h1>
+                </div>
+
+                <button class="btn center modal-trigger right" href="#openform">post video</button>
             </div>
 
             <div></div>
             <div class="section" id="list">
             <br></br>
 
-            <h3 class = :keft >My Channel</h3>
+            <h3 class = "left" >My Channel</h3>
                 <table>
                     <tbody>   
                         <% for (let i = 0; i < feed.length; i++) { %>
                         <tr>
                             <td>
-                                <img src="<%= feed[i].image %>">
+                                <img src="<%=feed[i].image%>" width = 70px>
+                                
                             </td>
 
                             <td>
                                 <div><h3 ><%= feed[i].name %></h3></div>
-                                <div><p ><%= feed[i].date %></p></div>
-                                <div><p >Duration: <%= feed[i].duration %></p></div>
+                                <div><p >Date: <%= feed[i].date %></p></div>
+                                <div><p >Duration: <%= feed[i].duration %> minutes <%= feed[i].duration %> seconds</p></div>
                             </td>
                             <td>
                                 <a class="btn" href="/video/<%= feed[i].video_id %>">
@@ -57,16 +61,24 @@
             </div>
         
 
-            <div class="modal" id="openform">
+            <div class="modal" id="openform" enctype="multipart/form-data">
                 <div class="modal-content">
                     <h1>upload video</h1>
                     <form action="/" method = "POST">
                         <label for="name">title: </label>
                         <input type="text" id="name" name="name">
+
+                        <label for= "date">date:</label>
+                        <input type = "date" id = "date" name = "date">
+
                         <div id="drop-zone"> 
                             <label for = "image">upload thumbnail: </label>
                             <input type="file" id="image" name="image">
                           </div> 
+
+                        
+
+
                         <div class="center">
                             <input type="submit" value="upload video" class="btn deep-purple lighten-3 ">
                         </div>
