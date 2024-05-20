@@ -91,7 +91,7 @@ const update_video = `
 `
 
 app.post("/video/:id", (req,res) => {
-    db.execute(update_video, [req.body.name, req.body.date, req.body.date, req.body.duration, req.params.image, req.params.id], (error, results) =>{
+    db.execute(update_video, [req.body.name, req.body.date, req.body.date, req.body.duration, req.body.image, req.params.id], (error, results) =>{
         if(error){
             res.status(500).send(error);
         }else{

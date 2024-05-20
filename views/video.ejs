@@ -16,17 +16,17 @@
         <link rel="stylesheet" href="/styles.css" />
     </head>
     <body>
-        <form action="/video/<%=vid.todo_id%>" method = "post" class="edit-video">
-            <label for="todo">TODO:</label>
+        <form action="/video/<%=vid.video_id%>" method = "post" class="edit-video">
+            <label for="video">TODO:</label>
             <input
                 type="text"
-                id="todo"
-                name="todo"
-                value="<%= hw.todo_description %>"
+                id="name"
+                name="name"
+                value="<%= vid.name %>"
             />
             <br /><br />
             <label for="date">Date: </label>
-            <input type="date" id="date" name="date" value="<%=hw.date%>"/>
+            <input type="date" id="date" name="date" value="<%=vid.date%>"/>
             <br /><br />
             <label for="subject">Subject: </label>
             

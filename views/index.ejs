@@ -18,31 +18,28 @@
             <div> 
                 <h2 class=" left">metube</h2>
                 <a class= "material-icons large left">videocam</a>
-                <button class="btn center deep-purple lighten-3 modal-trigger right" href="#openform">upload video</button>
+                <button class="btn center modal-trigger right" href="#openform">upload video</button>
             </div>
 
             <div></div>
             <div class="section" id="list">
+            <br></br>
 
-            <h3>My Channel</h3>
+            <h3 class = :keft >My Channel</h3>
                 <table>
-                    <!-- <thead>
-                        <tr>
-                            <th>date</th>
-                            <th>subject</th>
-                            <th>todo</th>
-                            <th>edit</th>
-                            <th>delete</th>
-                        </tr>
-                    </thead> -->
                     <tbody>   
                         <% for (let i = 0; i < feed.length; i++) { %>
                         <tr>
-                            <td><%= feed[i].image %></td>
-                            <td><%= feed[i].name %></td>
-                            <td><%= feed[i].date %></td>
-                            <td><%= feed[i].duration %></td>
-                            <td>a
+                            <td>
+                                <img src="<%= feed[i].image %>">
+                            </td>
+
+                            <td>
+                                <div><h3 ><%= feed[i].name %></h3></div>
+                                <div><p ><%= feed[i].date %></p></div>
+                                <div><p >Duration: <%= feed[i].duration %></p></div>
+                            </td>
+                            <td>
                                 <a class="btn" href="/video/<%= feed[i].video_id %>">
                                     <i class="material-icons ">edit</i>
                                 </a>
@@ -54,9 +51,6 @@
                             </td>
                         </tr>
                         <% } %>
-                            
-    
-    
                     </tbody>
                 </table>
                 
@@ -67,11 +61,11 @@
                 <div class="modal-content">
                     <h1>upload video</h1>
                     <form action="/" method = "POST">
-                        <label for="title">title: </label>
-                        <input type="text" id="title" name="title">
+                        <label for="name">title: </label>
+                        <input type="text" id="name" name="name">
                         <div id="drop-zone"> 
-                            <label for = "thumbnail">upload thumbnail: </label>
-                            <input type="file" id="thumbnail" multiple> 
+                            <label for = "image">upload thumbnail: </label>
+                            <input type="file" id="image" name="image">
                           </div> 
                         <div class="center">
                             <input type="submit" value="upload video" class="btn deep-purple lighten-3 ">
