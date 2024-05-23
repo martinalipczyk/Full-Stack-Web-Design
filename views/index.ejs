@@ -4,29 +4,29 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>metube</title>
-        <!-- Compiled and minified CSS -->
+
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!-- <link rel="stylesheet" href="styles.css"> -->
-        <link rel="stylesheet" href="">
+
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <div class="container">
-            <div> 
-                <div>
-                    <h1 class= "material-icons large">videocam</h1>
-                    <h1 class=" hleft">metube</h1>
-                </div>
-
-                <button class="btn center modal-trigger right" href="#openform">post video</button>
+            
+            <div class="idk">
+                <h1 class="material-icons large">videocam</h1>
+                <h1 id="metube-title">metube</h1>
+                <div class="flex-grow"></div>
+                <button class="btn modal-trigger grey" href="#openform">
+                    post video
+                    <i class="material-icons">add_to_photos</i>
+                </button>
             </div>
 
-            <div></div>
             <div class="section" id="list">
-            <br></br>
 
             <h3 class = "left" >My Channel</h3>
                 <table>
@@ -34,7 +34,7 @@
                         <% for (let i = 0; i < feed.length; i++) { %>
                         <tr>
                             <td>
-                                <img src="<%=feed[i].image%>" width = 70px>
+                                <img src="<%=feed[i].image%>" width = 150px>
                                 
                             </td>
 
@@ -44,7 +44,7 @@
                                 <div><p >Duration: <%= feed[i].duration %> minutes <%= feed[i].duration %> seconds</p></div>
                             </td>
                             <td>
-                                <a class="btn" href="/video/<%= feed[i].video_id %>">
+                                <a class="btn" href="/video/<%= feed[i].video_id %>/edit">
                                     <i class="material-icons ">edit</i>
                                 </a>
                             </td>

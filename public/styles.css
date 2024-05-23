@@ -1,5 +1,5 @@
 * {
-    color: #8e7fef;
+    color: #2d2c32;
 }
 
 td {
@@ -18,7 +18,7 @@ td {
 }
 
 .container {
-    positon: relative;
+    position: relative;
 }
 
 .container > button {
@@ -45,7 +45,7 @@ textarea {
 }
 
 .edit-form > label {
-    color: #8e7fef;
+    /* color: #8e7fef; */
     font-size: 20px;
 }
 
@@ -66,6 +66,23 @@ textarea {
     width: max-content;
 }
 
-h1 {
-    display: inline-block;
+.idk {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
+
+#metube-title {
+    margin: 0;
+    margin-left: 10px; 
+}
+
+.material-icons.large {
+    margin-right: 10px; 
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+

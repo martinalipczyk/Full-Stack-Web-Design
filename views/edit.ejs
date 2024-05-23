@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>metube</title>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <div class="container">
+
+        <div class="idk">
+            <h1 class="material-icons large">videocam</h1>
+            <h1 id="metube-title">metube</h1>
+            <div class="flex-grow"></div>
+            <button class="btn modal-trigger grey" href="#openform">
+                post video
+                <i class="material-icons">add_to_photos</i>
+            </button>
+        </div>
+
+        <div class="section" id="list">
+            <h3 class="left">My Channel</h3>
+            <table>
+                <tbody>
+                    <% for (let i = 0; i < feed.length; i++) { %>
+                    <tr>
+                        <td>
+                            <img src="<%= feed[i].image %>" width="70px">
+                        </td>
+                        <td>
+                            <form id="edit-form-<%= feed[i].video_id %>" action="/video/<%= feed[i].video_id %>/edit" method="POST">
+                                <% if (feed[i].video_id == vid.video_id) { %>
+                                    <input type="text" name="name" value="<%= feed[i].name %>">
+                                <% } else { %>
+                                    <div><h3 class="video-title"><%= feed[i].name %></h3></div>
+                                <% } %>
+                                <div><p>Date: <%= feed[i].date %></p></div>
+                                <div><p>Duration: <%= feed[i].duration %> minutes</p></div>
+                            </form>
+                        </td>
+
+                        <% if (feed[i].video_id != vid.video_id) { %>
+                            <td>
+                                <a class="btn" href="/video/<%= feed[i].video_id %>/edit">
+                                    <i class="material-icons ">edit</i>
+                                </a>
+                            </td>
+                        <% } %>
+
+
+                        <td>
+                            <a class="btn" href="/video/<%= feed[i].video_id %>/delete">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        <% if (feed[i].video_id == vid.video_id) { %>
+                        <td>
+                            <button type="submit" form="edit-form-<%= feed[i].video_id %>" method = "post" class="btn">
+                                <i class="material-icons">check</i>
+                            </button>
+                        </td>
+                        <% } %>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal" id="openform" enctype="multipart/form-data">
+            <div class="modal-content">
+                <h1>upload video</h1>
+                <form action="/" method="POST">
+                    <label for="name">title: </label>
+                    <input type="text" id="name" name="name">
+                    <label for="date">date:</label>
+                    <input type="date" id="date" name="date">
+                    <div id="drop-zone">
+                        <label for="image">upload thumbnail: </label>
+                        <input type="file" id="image" name="image">
+                    </div>
+                    <div class="center">
+                        <input type="submit" value="upload video" class="btn deep-purple lighten-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>M.AutoInit();</script>
+</body>
+</html>

@@ -83,19 +83,34 @@ app.get("/video/:id/delete", (req, res) => {
 
 const update_video = `
     UPDATE video 
-    SET name = ?,
-    WHERE
-        video_id = ?
+    SET name = ?
+    WHERE video_id = ?
 `
 
-app.post("/video/:id", (req,res) => {
-    db.execute(update_video, [req.body.name, req.params.id], (error, results) =>{
-        if(error){
+app.get("/video/:id/edit", (req, res) => {
+    db.execute(get_video_details, [req.params.id], (error, results) => {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            db.execute(get_all_videos, (error, allVideos) => {
+                if (error) {
+                    res.status(500).send(error);
+                } else {
+                    res.render('edit', { vid: results[0], feed: allVideos });
+                }
+            });
+        }
+    });
+});
+
+app.post("/video/:id/edit", (req, res) => {
+    db.execute(update_video, [req.body.name, req.params.id], (error, results) => {
+        if (error) {
             res.status(500).send(error);
-        }else{
+        } else {
             res.redirect("/");
         }
-    })
+    });
 });
 
 
