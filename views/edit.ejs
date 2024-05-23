@@ -7,14 +7,106 @@
 
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        />
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/styles.css">
+        <style>
+            * {
+    color: #2d2c32;
+}
+
+td {
+    color: black;
+}
+
+.btn {
+    border-radius: 50px;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 5px 5px 7px #ddd, -5px -5px 7px #eee;
+}
+
+td {
+    min-width: 20px;
+}
+
+.container {
+    position: relative;
+}
+
+.container > button {
+    position: sticky;
+    left: 50%;
+}
+
+input.btn {
+    margin: 20px 5px;
+}
+
+.modal {
+    border-radius: 30px;
+    padding: 20px;
+}
+
+textarea {
+    border-radius: 10px;
+}
+
+.edit-form {
+    padding: 30px;
+    width: 500px;
+}
+
+.edit-form > label {
+    /* color: #8e7fef; */
+    font-size: 20px;
+}
+
+.edit-form > input {
+    display: inline;
+    width: 50%;
+}
+
+.edit-form > input[type="text"] {
+    font-size: 25px;
+}
+
+.edit-form > select {
+    font-size: 50px;
+}
+
+.edit-form > .btn {
+    width: max-content;
+}
+
+.idk {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#metube-title {
+    margin: 0;
+    margin-left: 10px; 
+}
+
+.material-icons.large {
+    margin-right: 10px; 
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+
+
+        </style>
+        
     </head>
 <body>
     <div class="container">
+       
 
         <div class="idk">
             <h1 class="material-icons large">videocam</h1>
@@ -33,7 +125,7 @@
                     <% for (let i = 0; i < feed.length; i++) { %>
                     <tr>
                         <td>
-                            <img src="<%= feed[i].image %>" width="70px">
+                            <img src="/<%= feed[i].image %>" width="150px">
                         </td>
                         <td>
                             <form id="edit-form-<%= feed[i].video_id %>" action="/video/<%= feed[i].video_id %>/edit" method="POST">
@@ -42,8 +134,8 @@
                                 <% } else { %>
                                     <div><h3 class="video-title"><%= feed[i].name %></h3></div>
                                 <% } %>
-                                <div><p>Date: <%= feed[i].date %></p></div>
-                                <div><p>Duration: <%= feed[i].duration %> minutes</p></div>
+                                <div><p>Date: <%= new Date(feed[i].date).toLocaleDateString() %></p></div>
+                                <div><p >Duration: <%= feed[i].duration %>:<%= feed[i].duration %></p></div>
                             </form>
                         </td>
 
@@ -63,7 +155,7 @@
                         </td>
                         <% if (feed[i].video_id == vid.video_id) { %>
                         <td>
-                            <button type="submit" form="edit-form-<%= feed[i].video_id %>" method = "post" class="btn">
+                            <button class = "btn" type="submit" form="edit-form-<%= feed[i].video_id %>">
                                 <i class="material-icons">check</i>
                             </button>
                         </td>
@@ -77,21 +169,25 @@
         <div class="modal" id="openform" enctype="multipart/form-data">
             <div class="modal-content">
                 <h1>upload video</h1>
-                <form action="/" method="POST">
+                <form action="/" method = "POST">
                     <label for="name">title: </label>
                     <input type="text" id="name" name="name">
-                    <label for="date">date:</label>
-                    <input type="date" id="date" name="date">
-                    <div id="drop-zone">
-                        <label for="image">upload thumbnail: </label>
+
+                    <div id="drop-zone"> 
+                        <label for = "image">upload thumbnail: </label>
                         <input type="file" id="image" name="image">
-                    </div>
+                      </div> 
+
+        
                     <div class="center">
-                        <input type="submit" value="upload video" class="btn deep-purple lighten-3">
+                        <input type="submit" value="upload video" class="btn grey ">
                     </div>
+                    <p>
+
+                    </p>
+                    
                 </form>
             </div>
-        </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>M.AutoInit();</script>

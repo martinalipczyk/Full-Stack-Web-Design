@@ -7,14 +7,15 @@ const port = 3000;
 // define middleware that serves static resources in the public directory
 app.use(express.static(__dirname + "/public"));
 
-const get_all_videos = `
-        SELECT video_id, name, date, duration, image
-        FROM video
-`;
+
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+const get_all_videos = `
+        SELECT video_id, name, date, duration, image
+        FROM video
+`;
 
 //configures express to parse url encoded post request bodies
 app.use(express.urlencoded({extended: false}));
@@ -54,7 +55,7 @@ const upload_video = `
 
 app.post("/", (req, res)=>{
     console.log(req.body.image)
-    db.execute(upload_video, [req.body.name, parseInt(Math.random()*60, 10), req.body.image, req.body.date], (error, results)=> {
+    db.execute(upload_video, [req.body.name, parseInt(Math.random()*60, 10), req.body.image, new Date()], (error, results)=> {
         if(error){
             res.status(500).send(error);
         }
@@ -92,11 +93,13 @@ app.get("/video/:id/edit", (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            db.execute(get_all_videos, (error, allVideos) => {
+            db.execute(get_all_videos, (error, results2) => {
                 if (error) {
                     res.status(500).send(error);
                 } else {
-                    res.render('edit', { vid: results[0], feed: allVideos });
+                    console.log(results[0]);
+                    console.log(results2)
+                    res.render('edit', { vid: results[0], feed: results2 });
                 }
             });
         }
